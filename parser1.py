@@ -112,7 +112,7 @@ def main():
         data = response.json()
         count_product = data['totalCount'] #получаем количество товара в категории
             
-        for offset in range(0,count_product+1,50): #цикл для прохода всех товаров в категории
+        for offset in range(0,count_product+1,100): #цикл для прохода всех товаров в категории
             data = {
                 'nodeCode': code,
                 'filters': [],
@@ -124,7 +124,7 @@ def main():
             }
             response = get_url(url,data)
             print(offset,'/',count_product)
-            time.sleep(1.5)
+            time.sleep(2)
             if (response.status_code == 200): #если код ответа 200 то вызовем функции для сохранения и вывода данных 
                 save_data(response)
                 product_list = [] #в product_list запишем данных которые хотим вывести в консоль
